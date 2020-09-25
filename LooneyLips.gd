@@ -7,3 +7,9 @@ func _ready():
 	print (story % prompts)
 	
 	$VBoxContainer/Story.text = story % prompts
+
+
+func _on_PlayerText_text_entered(new_text):
+	print(new_text)
+	$VBoxContainer/Story.text = new_text
+	$VBoxContainer/PlayerText.clear()
