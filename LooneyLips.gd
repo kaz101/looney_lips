@@ -10,6 +10,13 @@ func _ready():
 
 
 func _on_PlayerText_text_entered(new_text):
-	print(new_text)
-	$VBoxContainer/Story.text = new_text
-	$VBoxContainer/PlayerText.clear()
+	_update_DisplayText(new_text)
+
+func _update_DisplayText(words):
+	print(words)
+	$VBoxContainer/Story.text = words
+	$VBoxContainer/HBoxContainer/PlayerText.clear()
+
+
+func _on_Button_pressed():
+	_update_DisplayText($VBoxContainer/HBoxContainer/PlayerText.text)

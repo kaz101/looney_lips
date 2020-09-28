@@ -38,15 +38,16 @@ margin_left = 24.0
 margin_top = 24.0
 margin_right = -24.0
 margin_bottom = -24.0
+alignment = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Story" type="Label" parent="VBoxContainer"]
-margin_top = -1.0
+margin_top = 3.0
 margin_right = 976.0
-margin_bottom = 399.0
-rect_min_size = Vector2( 0, 400 )
+margin_bottom = 483.0
+rect_min_size = Vector2( 0, 480 )
 custom_fonts/font = SubResource( 1 )
 text = "Placeholder text
 "
@@ -55,9 +56,24 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PlayerText" type="LineEdit" parent="VBoxContainer"]
-margin_top = 404.0
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+margin_top = 488.0
 margin_right = 976.0
-margin_bottom = 477.0
+margin_bottom = 561.0
+
+[node name="PlayerText" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
+margin_right = 899.0
+margin_bottom = 73.0
+size_flags_horizontal = 3
 custom_fonts/font = SubResource( 2 )
-[connection signal="text_entered" from="VBoxContainer/PlayerText" to="." method="_on_PlayerText_text_entered"]
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer"]
+margin_left = 903.0
+margin_right = 976.0
+margin_bottom = 73.0
+rect_min_size = Vector2( 73, 73 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="text_entered" from="VBoxContainer/HBoxContainer/PlayerText" to="." method="_on_PlayerText_text_entered"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/Button" to="." method="_on_Button_pressed"]
