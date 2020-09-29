@@ -1,22 +1,41 @@
 extends Control
-
+var player_words = []
+var prompts = ['Person','noun','adjective','adverb']
+var story = '%s drank a %s and thought it was the %s thing he had ever %s.'
+onready var PlayerText = $VBoxContainer/HBoxContainer/PlayerText
+onready var StoryBox = $VBoxContainer/Story 
 
 func _ready():
-	var prompts = ['Kevin','coke','best','had']
-	var story = '%s drank a %s and thought it was the %s thing he had ever %s.'
-	print (story % prompts)
-	
-	$VBoxContainer/Story.text = story % prompts
-
+	welcome_screen()
 
 func _on_PlayerText_text_entered(new_text):
-	_update_DisplayText(new_text)
+	update_DisplayText(new_text)
 
-func _update_DisplayText(words):
+func update_DisplayText(words):
 	print(words)
-	$VBoxContainer/Story.text = words
-	$VBoxContainer/HBoxContainer/PlayerText.clear()
-
+	StoryBox.text = words
+	PlayerText.clear()
 
 func _on_Button_pressed():
-	_update_DisplayText($VBoxContainer/HBoxContainer/PlayerText.text)
+	append_word_list()
+	PlayerText.clear()
+	prompt_user()
+
+func welcome_screen():
+	StoryBox.text = "Welcome to Looney Lips the Mad Libs rip off extrordinare!! Press button to begin"
+	
+	
+func prompt_user():
+	StoryBox.text = 'Alright, give me a ' + prompts[player_words.size()]
+	
+func append_word_list():
+	player_words.append(PlayerText.text)
+	
+func tell_story():
+	pass
+
+
+
+func _on_StartButtom_pressed():
+	update_DisplayText(PlayerText.text)
+	prompt_user()
